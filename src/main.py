@@ -17,6 +17,8 @@ def plot_digits(x, title=None):  # plot a list of digit (x must be a list of np.
     for i in range(len(x)):
         plt.subplot(2, 5, i + 1)  # i + 1 because subplots start from 1
         plot_digit(x[i])  # call our plot image function
+    if title is None:
+        title = "unnamed_image"
     plt.savefig("../out/" + title + ".pdf")
     # plt.show()
 
