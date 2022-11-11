@@ -13,11 +13,12 @@ def plot_digit(image, shape=(28, 28)):
 def plot_digits(x, title=None):  # plot a list of digit (x must be a list of np.array)
     plt.figure()
     if title is not None:
-        plt.title = title
+        plt.suptitle(title)
     for i in range(len(x)):
         plt.subplot(2, 5, i + 1)  # i + 1 because subplots start from 1
         plot_digit(x[i])  # call our plot image function
-    plt.show()
+    plt.savefig("../out/" + title + ".pdf")
+    # plt.show()
 
 
 data = pandas.read_csv("../data/mnist_train_small.csv")
@@ -41,7 +42,7 @@ for cls in np.sort(np.unique(labels)):
     rand_index = random.randint(0, cls_images.shape[0])
     random_unique_digit.append(cls_images[rand_index, :])
 
-plot_digits(random_unique_digit, "Unperturbed images:")
+plot_digits(random_unique_digit, "Unperturbed images")
 
 perturbed_average = []
 perturbed_triangle = []
