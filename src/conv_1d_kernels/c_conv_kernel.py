@@ -4,8 +4,8 @@ import numpy as np
 
 class CConvKernel(ABC):
     def __init__(self, kernel_size=3):
+        self._mask = None
         self.kernel_size = kernel_size
-        self.mask = None
 
     @abstractmethod
     def kernel_mask(self):
@@ -30,5 +30,5 @@ class CConvKernel(ABC):
         xp = x.copy()
         k_range = int((self.kernel_size - 1) / 2)
         for i in range(k_range, x.size - k_range):
-            xp[i] = np.dot(x[i-k_range:i+k_range+1], self.mask)
+            xp[i] = np.dot(x[i-k_range:i+k_range+1], self._mask)
         return xp
